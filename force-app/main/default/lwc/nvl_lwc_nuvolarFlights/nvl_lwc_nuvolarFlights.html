@@ -1,0 +1,89 @@
+<template>
+    <lightning-card title="Nuvolar Flights" icon-name="custom:custom20">
+        <!-- Inputs -->
+        <div class = "slds-m-around_medium">
+            <lightning-input type="search" label="IATA Filter" value={searchIATA} onchange={handleSearch}></lightning-input>
+            <lightning-layout pull-to-boundary="medium">
+                <lightning-layout-item flexibility="auto" padding="horizontal-medium">
+                    <lightning-combobox name="ArrivalAirports"
+                                        label="Arrival Airport"
+                                        placeholder="Select Airport..."
+                                        options={filteredAirportDataNames}
+                                        value={arrivalAirport}
+                                        onchange={handleArrivalChange}
+                                        >
+                    </lightning-combobox>
+                    <!-- Display selected arrival airport-->
+                    <p style="color :red;">{validateEmptyArrivalAirport}</p>
+                    <lightning-input type="text" label="Selected Arrival Airport" value={selectedArrivalName} readonly></lightning-input>
+                </lightning-layout-item> 
+
+                <lightning-layout-item flexibility="auto" padding="horizontal-medium">
+                    <lightning-combobox name="DepartureAirports"
+                                        label="Departure Airport"
+                                        placeholder="Select Airport..."
+                                        options={filteredAirportDataNames}
+                                        value={departureAirport}
+                                        onchange={handleDepartureChange}
+                                        >
+                    </lightning-combobox>
+                    <!-- Display selected departure airport -->
+                    <p style="color :red;">{validateEmptyDepartureAirport}</p>
+                    <lightning-input type="text" label="Selected Departure Airport" value={selectedDepartureName} readonly></lightning-input>
+                </lightning-layout-item>
+            </lightning-layout>
+
+            <!-- Validation error inserting flight -->
+            <lightning-layout horizontal-align="center">
+                <lightning-layout-item flexibility="auto" padding="around-small">
+                    <p style="color :red;">{validateInsertedFlight}</p>
+                </lightning-layout-item>
+            </lightning-layout>
+
+            <!-- Buttons to save/clear records -->
+            <lightning-layout horizontal-align="center">
+                <lightning-layout-item flexibility="auto" padding="around-small">
+                    <lightning-button variant="brand" onclick={handleSaveFlight} label="Save Flight"></lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item flexibility="auto" padding="around-small">
+                    <lightning-button variant="destructive" onclick={handleClear} label="Clear"></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+
+            <!-- Datatable to display flights -->
+            <lightning-layout horizontal-align="center">
+                <lightning-datatable
+                    key-field="flightName"
+                    data={flightsToDisplay}
+                    columns={flightsColumns}
+                    show-row-number-column
+                    hide-checkbox-column
+                    >
+                </lightning-datatable>
+            </lightning-layout>
+
+            <!-- Pagination -->
+            <lightning-layout horizontal-align="center">
+                <!-- Flights per Page -->
+                <lightning-layout-item flexibility="auto" padding="horizontal-medium">
+                    <div class="slds-select_container">
+                        <select class="slds-select" id="recordsPerPage" onchange={handleRecordsPerPage}>
+                            <template for:each={pageSizeOptions} for:item="option">
+                                <option key={option} value={option}>{option}</option>
+                            </template>
+                        </select>
+                    </div>
+                </lightning-layout-item> 
+
+                <!-- Back/Next Buttons -->
+                <lightning-layout-item flexibility="auto" padding="horizontal-medium">
+                    <lightning-button disabled={bDisableFirst} icon-name="utility:chevronleft" label="Previous" alternative-text="Previous" onclick={previousPage}></lightning-button>
+                    &nbsp;
+                    <span class="slds-badge">{pageNumber} &nbsp;of&nbsp; {totalPages}</span>
+                    &nbsp;
+                    <lightning-button disabled={bDisableLast} icon-name="utility:chevronright" label="Next" alternative-text="Next" onclick={nextPage} class="slds-p-horizontal_x-small" icon-position="right"></lightning-button>
+                </lightning-layout-item> 
+            </lightning-layout>
+        </div>
+    </lightning-card>
+</template>

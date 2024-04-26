@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LongitudeRange</fullName>
+    <active>true</active>
+    <description>The range of the Longitude is from +180 to -180 degrees</description>
+    <errorConditionFormula>OR(nvl_fld_longitude__c &lt; -180, nvl_fld_longitude__c &gt; 180)</errorConditionFormula>
+    <errorDisplayField>nvl_fld_longitude__c</errorDisplayField>
+    <errorMessage>The range of the Longitude is from +180 to -180 degrees</errorMessage>
+</ValidationRule>

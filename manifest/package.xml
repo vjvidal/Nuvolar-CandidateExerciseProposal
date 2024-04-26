@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+	<types>
+		<members>Nvl_cls_nuvolarFlightsController</members>
+		<members>Nvl_cls_nuvolarFlightsController_Test</members>
+		<members>Nvl_cls_nuvolarFlightsGateway</members>
+		<members>Nvl_cls_nuvolarFlightsGateway_Test</members>
+		<members>Nvl_cls_nuvolarFlightsHandler</members>
+		<members>Nvl_cls_nuvolarFlightsHandler_Test</members>
+		<name>ApexClass</name>
+	</types>
+	<types>
+		<members>nvl_obj_airport__c</members>
+		<members>nvl_obj_flight__c</members>
+		<name>CustomObject</name>
+	</types>
+	<types>
+		<members>nvl_lwc_nuvolarFlights</members>
+		<name>LightningComponentBundle</name>
+	</types>
+	<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+	<version>58.0</version>
+</Package>

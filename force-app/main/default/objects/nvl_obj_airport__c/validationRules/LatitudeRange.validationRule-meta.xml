@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LatitudeRange</fullName>
+    <active>true</active>
+    <description>The range of the Latitude is from +90 to -90 degrees</description>
+    <errorConditionFormula>OR( nvl_fld_latitude__c &lt; -90,nvl_fld_latitude__c &gt; 90)</errorConditionFormula>
+    <errorDisplayField>nvl_fld_latitude__c</errorDisplayField>
+    <errorMessage>The range of the Latitude is from +90 to -90 degrees</errorMessage>
+</ValidationRule>
